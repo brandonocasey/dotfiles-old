@@ -26,8 +26,10 @@
       "$XDG_CONFIG_HOME/npm/npmrc": "configs/npmrc",
       "$XDG_CONFIG_HOME/nvim/lua/custom": "configs/nvim/nvchad",
       "$XDG_CONFIG_HOME/vim/vimrc": "configs/vim/vimrc",
+      "$XDG_CONFIG_HOME/direnv/direnv.toml": "configs/direnv.toml",
       "~/.tool-versions": "configs/tool-versions",
       "~/.telnetrc": "configs/telnetrc",
+      "~/.envrc": "configs/envrc",
       "~/.zshrc": "shell/index.sh",
       "~/.bashrc": "shell/index.sh"
     }

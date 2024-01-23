@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # shellcheck shell=sh
 
 # ~~ Functions ~~
@@ -29,9 +36,9 @@ _add_to_pathvar() {
 
     # by default we push to the end
     if [ -z "$unshift" ]; then
-      pathvar="$PATH:$dir"
+      pathvar="$pathvar:$dir"
     else
-      pathvar="$dir:$PATH"
+      pathvar="$dir:$pathvar"
     fi
 
     unset unshift
@@ -164,3 +171,4 @@ if [ "$1" != '--no-shell' ] && [ -n "$SHELL_NAME" ]; then
 fi
 
 unset -f source_dir
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"

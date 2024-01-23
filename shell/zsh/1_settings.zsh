@@ -23,6 +23,6 @@ unsetopt MAIL_WARN
 unsetopt BEEP
 
 # TODO: This needs to go after plugins i think
-# autoload -U compinit
-# compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-# zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+autoload -U compinit
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"

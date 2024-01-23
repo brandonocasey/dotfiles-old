@@ -2,9 +2,16 @@
 	path = submodules/dotbot
 	url = https://github.com/anishathalye/dotbot
   ignore = dirty
+  shallow = true
 [submodule "submodules/fzf"]
 	path = submodules/fzf
 	url = https://github.com/junegunn/fzf
+  shallow = true
 [submodule "submodules/asdf"]
 	path = submodules/asdf
 	url = https://github.com/asdf-vm/asdf
+  shallow = true
+[submodule "submodules/p10k"]
+	path = submodules/p10k
+	url = https://github.com/romkatv/powerlevel10k
+  shallow = true
