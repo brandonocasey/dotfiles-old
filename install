@@ -12,6 +12,12 @@ echo "Installing with dotbot"
 echo "$current_dir/submodules/dotbot/bin/dotbot"
 "$current_dir/submodules/dotbot/bin/dotbot" -d "$current_dir" -c "$current_dir/dotbot.json"
 
+echo "Installing asdf plugins"
+asdf plugin add nodejs
+asdf plugin add python
+asdf install nodejs
+asdf install python
+
 if [ "$(basename "$SHELL")" != 'zsh' ] && cmd_exists zsh; then
   echo "Setting default shell to zsh"
   chsh -s "$(which zsh)"
@@ -169,4 +175,3 @@ if [ -f "$HOME/.zsh_history" ]; then
     mv "$HOME/.zsh_history" "$XDG_STATE_HOME/zsh/history"
   fi
 fi
-

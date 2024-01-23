@@ -158,11 +158,9 @@ source_dir() {
 }
 
 source_dir sh
-if [ "$1" != '--no-shell' ]; then
-  source_dir plugins
-  if [ -n "$SHELL_NAME" ]; then
-    source_dir "$SHELL_NAME"
-  fi
+source_dir plugins
+if [ "$1" != '--no-shell' ] && [ -n "$SHELL_NAME" ]; then
+  source_dir "$SHELL_NAME"
 fi
 
 unset -f source_dir

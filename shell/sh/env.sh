@@ -29,8 +29,7 @@ else
 fi
 
 # XDG config location overrides
-export ANDROID_HOME="$XDG_DATA_HOME/android"
-export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
 export HISTFILE="$XDG_STATE_HOME/$SHELL_NAME/history"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
