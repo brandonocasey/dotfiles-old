@@ -121,10 +121,6 @@ if cmd_exists "brew"; then
   manpath_add "$HOMEBREW_PREFIX/share/man"
   infopath_add "$HOMEBREW_PREFIX/share/info"
   fpath_add "$HOMEBREW_PREFIX/share/zsh/site-functions/"
-  if [ "$SHELL_NAME" = "bash" ]; then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  fi
-
 fi
 
 path_add "$DOTFILES_DIR/bin"

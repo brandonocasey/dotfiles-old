@@ -7,7 +7,11 @@ setopt COMPLETE_ALIASES
 # allow comments in interactive commands
 setopt INTERACTIVE_COMMENTS
 
+# complete inwords too
 setopt COMPLETE_IN_WORD
+
+# dont' automatically cycle through completions
+unsetopt MENU_COMPLETE
 
 # -- History --
 # remove older commands from the history list that are duplicates of the current one
