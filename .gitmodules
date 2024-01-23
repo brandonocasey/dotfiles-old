@@ -1,0 +1,10 @@
+[submodule "submodules/dotbot"]
+	path = submodules/dotbot
+	url = https://github.com/anishathalye/dotbot
+  ignore = dirty
+[submodule "submodules/fzf"]
+	path = submodules/fzf
+	url = https://github.com/junegunn/fzf
+[submodule "submodules/asdf"]
+	path = submodules/asdf
+	url = https://github.com/asdf-vm/asdf.git

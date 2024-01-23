@@ -1,0 +1,172 @@
+#!/usr/bin/env zsh
+
+current_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+
+source "${current_dir}/shell/index.sh" --no-shell
+
+echo "Installing submodules"
+git submodule update --init --recursive
+
+echo "$PATH"
+echo "Installing with dotbot"
+echo "$current_dir/submodules/dotbot/bin/dotbot"
+"$current_dir/submodules/dotbot/bin/dotbot" -d "$current_dir" -c "$current_dir/dotbot.json"
+
+if [ "$(basename "$SHELL")" != 'zsh' ] && cmd_exists zsh; then
+  echo "Setting default shell to zsh"
+  chsh -s "$(which zsh)"
+else
+  echo "Default shell is already zsh"
+fi
+
+echo "Installing fzf binary"
+"$current_dir/submodules/fzf/install" --bin
+
+echo "Migrating files to XDG directories"
+if [ -d "$HOME/.android" ]; then
+  if [ -d "$XDG_DATA_HOME/android" ]; then
+    echo "duplicate dir $HOME/.android and $XDG_DATA_HOME/android"
+  else
+    mv "$HOME/.android" "$XDG_DATA_HOME/android"
+  fi
+fi
+
+if [ -d "$HOME/.asdf" ]; then
+  if [ -d "$XDG_DATA_HOME/asdf" ]; then
+    echo "duplicate dir $HOME/.asdf and $XDG_DATA_HOME/asdf"
+  else
+    mv "$HOME/.asdf" "$XDG_CONFIG_HOME/asdf"
+  fi
+fi
+
+if [ -f "$HOME/.bash_history" ]; then
+  if [ -f "$XDG_STATE_HOME/bash/history" ]; then
+    echo "duplicate file $HOME/.bash_history and $XDG_STATE_HOME/bash/history"
+  else
+    mv "$HOME/.bash_history" "$XDG_STATE_HOME/bash/history"
+  fi
+fi
+
+if [ -d "$HOME/.docker" ]; then
+  if [ -d "$XDG_STATE_HOME/docker" ]; then
+    echo "duplicate dir $HOME/.docker and $XDG_STATE_HOME/docker"
+  else
+    mv "$HOME/.docker" "$XDG_CONFIG_HOME/docker"
+  fi
+fi
+
+if [ -f "$HOME/.gitconfig" ]; then
+  echo "Removing $HOME/.gitconfig"
+  rm "$HOME/.gitconfig"
+fi
+
+if [ -f "$HOME/.gitignore" ]; then
+  echo "Removing $HOME/.gitignore"
+  rm "$HOME/.gitignore"
+fi
+
+if [ -f "$HOME/.tmux.conf" ]; then
+  echo "Removing $HOME/.tmux.conf"
+  rm "$HOME/.tmux.conf"
+fi
+
+
+if [ -d "$HOME/.gnupg" ]; then
+  if [ -d "$XDG_DATA_HOME/gnupg" ]; then
+    echo "duplicate dir $HOME/.gnupg and $XDG_DATA_HOME/gnupg"
+  else
+    mv "$HOME/.gnupg" "$XDG_DATA_HOME/gnupg"
+  fi
+fi
+
+if [ -f "$HOME/.lesshst" ]; then
+  if [ -f "$XDG_CACHE_HOME/less/history" ]; then
+    echo "duplicate file $HOME/.lesshst and $XDG_CACHE_HOME/less/history"
+  else
+    mv "$HOME/.lesshst" "$XDG_CACHE_HOME/less/history"
+  fi
+fi
+
+if [ -f "$HOME/.node_repl_history" ]; then
+  if [ -f "$XDG_DATA_HOME/node_repl_history" ]; then
+    echo "duplicate file $HOME/.node_repl_history and $XDG_DATA_HOME/node_repl_history"
+  else
+    mv "$HOME/.node_repl_history" "$XDG_DATA_HOME/node_repl_history"
+  fi
+fi
+
+if [ -f "$HOME/.npmrc" ]; then
+  echo "Removing $HOME/.npmrc"
+  rm "$HOME/.npmrc"
+fi
+
+if [ -d "$HOME/.npm" ]; then
+  echo "** Please remove $HOME/.npm"
+fi
+
+if [ -d "$HOME/.bundle" ]; then
+  echo "** Please remove $HOME/.bundle"
+fi
+
+
+if [ -f "$HOME/.pgpass" ]; then
+  if [ -f "$XDG_CONFIG_HOME/pg/pgpass" ]; then
+    echo "duplicate file $HOME/.pgpass and $XDG_CONFIG_HOME/pg/pgpass"
+  else
+    mv "$HOME/.pgpass" "$XDG_CONFIG_HOME/pg/pgpass"
+  fi
+fi
+
+if [ -f "$HOME/.python_history" ]; then
+  if [ -f "$XDG_CACHE_HOME/python_history" ]; then
+    echo "duplicate file $HOME/.python_history and $XDG_CACHE_HOME/python_history"
+  else
+    mv "$HOME/.python_history" "$XDG_CACHE_HOME/python_history"
+  fi
+fi
+
+if [ -f "$HOME/.inputrc" ]; then
+  echo "Removing $HOME/.inputrc"
+  rm "$HOME/.inputrc"
+fi
+
+if [ -f "$HOME/.wget-hsts" ]; then
+ if [ -f "$XDG_DATA_HOME/wget-hsts" ]; then
+    echo "duplicate file $HOME/.wget-hsts and $XDG_DATA_HOME/wget-hsts"
+  else
+    mv "$HOME/.wget-hsts" "$XDG_DATA_HOME/wget-hsts"
+  fi
+fi
+
+if [ -f "$HOME/.wget-hsts" ]; then
+ if [ -f "$XDG_DATA_HOME/wget-hsts" ]; then
+    echo "duplicate file $HOME/.wget-hsts and $XDG_DATA_HOME/wget-hsts"
+  else
+    mv "$HOME/.wget-hsts" "$XDG_DATA_HOME/wget-hsts"
+  fi
+fi
+
+if [ -f "$HOME/.zcompcache" ]; then
+ if [ -f "$XDG_CACHE_HOME/zsh/zcompcache" ]; then
+    echo "duplicate file $HOME/.zcompcache and $XDG_CACHE_HOME/zsh/zcompcache"
+  else
+    mv "$HOME/.zcompdump" "$XDG_CACHE_HOME/zsh/zcompcache"
+  fi
+fi
+
+if [ -f "$HOME/.zcompdump" ]; then
+ if [ -f "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION" ]; then
+    echo "duplicate file $HOME/.zcompdump and $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+  else
+    mv "$HOME/.zcompdump" "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+  fi
+fi
+
+if [ -f "$HOME/.zsh_history" ]; then
+ if [ -f "$XDG_STATE_HOME/zsh/history" ]; then
+    echo "duplicate file $HOME/.zsh_history and $XDG_STATE_HOME/zsh/history"
+  else
+    mv "$HOME/.zsh_history" "$XDG_STATE_HOME/zsh/history"
+  fi
+fi
+

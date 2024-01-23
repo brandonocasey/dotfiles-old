@@ -1,0 +1,46 @@
+[
+  {
+    "defaults": {
+      "link": {
+        "relink": true,
+        "create": true,
+        "force": true
+      }
+    }
+  },
+  {
+    "clean": [
+      "~"
+    ]
+  },
+  {
+    "link": {
+      "$XDG_CONFIG_HOME/dotfiles": "",
+      "$XDG_CONFIG_HOME/ripgrep/config": "configs/ripgrep",
+      "$XDG_CONFIG_HOME/wezterm/wezterm.lua": "configs/wezterm.lua",
+      "$XDG_CONFIG_HOME/git/config": "configs/gitconfig",
+      "$XDG_CONFIG_HOME/git/ignore": "configs/gitignore",
+      "$XDG_CONFIG_HOME/tmux/tmux.conf": "configs/tmux.conf",
+      "$XDG_CONFIG_HOME/python/pythonrc": "configs/pythonrc",
+      "$XDG_CONFIG_HOME/readline/inputrc": "configs/inputrc",
+      "$XDG_CONFIG_HOME/npm/npmrc": "configs/npmrc",
+      "$XDG_CONFIG_HOME/nvim/lua/custom": "configs/nvim/nvchad",
+      "$XDG_CONFIG_HOME/vim/vimrc": "configs/vim/vimrc",
+      "~/.tool-versions": "configs/tool-versions",
+      "~/.telnetrc": "configs/telnetrc",
+      "~/.zshrc": "shell/index.sh",
+      "~/.bashrc": "shell/index.sh"
+    }
+  },
+  {
+    "create": [
+      "~/Projects",
+      "$XDG_STATE_HOME/bash",
+      "$XDG_CONFIG_HOME/npm",
+      "$XDG_CONFIG_HOME/pg",
+      "$XDG_STATE_HOME/zsh",
+      "$XDG_CACHE_HOME/zsh",
+      "$XDG_CACHE_HOME/less"
+    ]
+  }
+]
