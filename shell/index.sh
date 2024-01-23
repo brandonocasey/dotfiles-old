@@ -1,11 +1,12 @@
+# shellcheck shell=sh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [ -n "$ZSH_VERSION" ] && [ -f "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+#zmodload zsh/zprof
 
-# shellcheck shell=sh
 
 # ~~ Functions ~~
 cmd_exists() {
@@ -18,60 +19,33 @@ cmd_exists() {
 
 _add_to_pathvar() {
   # remove trailing slashes
-  pathvar="${1%%+(/)}"
-  dir="${2%%+(/)}"
-  unshift="$3"
+  local pathvar="${1%%+(/)}"
+  local dir="${2%%+(/)}"
 
-  # no path exists, just add the binary path
-  if [ -n "$pathvar" ]; then
-    # already in path
-    old_ifs="$IFS"
-    IFS=:
+  case ":${PATH:=$dir}:" in
+    *:"$dir":*)  ;;
+    *) pathvar="$pathvar:$dir"  ;;
+  esac
 
-    for p in $pathvar; do
-      [ "$p" = "$dir" ] && IFS="$old_ifs" && return
-    done
-
-    IFS="$old_ifs"
-
-    # by default we push to the end
-    if [ -z "$unshift" ]; then
-      pathvar="$pathvar:$dir"
-    else
-      pathvar="$dir:$pathvar"
-    fi
-
-    unset unshift
-    unset old_ifs
-  else
-    pathvar="$dir"
-  fi
 
   printf '%s' "$pathvar"
-  unset pathvar
-  unset dir
-  unset unshift
 }
 
 
 path_add() {
   PATH="$(_add_to_pathvar "$PATH" "$1" "$2")"
-  export PATH
 }
 
 manpath_add() {
   MANPATH="$(_add_to_pathvar "$MANPATH" "$1" "$2")"
-  export MANPATH
 }
 
 infopath_add() {
   INFOPATH="$(_add_to_pathvar "$INFOPATH" "$1" "$2")"
-  export MANPATH
 }
 
 fpath_add() {
   FPATH="$(_add_to_pathvar "$FPATH" "$1" "$2")"
-  export FPATH
 }
 
 # ~~ Shared Exports ~~
@@ -139,12 +113,18 @@ manpath_add "/usr/share/man"
 manpath_add "/usr/local/share/man"
 
 if cmd_exists "brew"; then
-  HOMEBREW_PREFIX="$(brew --prefix)"
-  export HOMEBREW_PREFIX
+  export HOMEBREW_PREFIX="$(brew --prefix)"
+  # See https://docs.brew.sh/Analytics
+  export HOMEBREW_NO_ANALYTICS=1
   path_add "$HOMEBREW_PREFIX/bin"
   path_add "$HOMEBREW_PREFIX/sbin"
   manpath_add "$HOMEBREW_PREFIX/share/man"
   infopath_add "$HOMEBREW_PREFIX/share/info"
+  fpath_add "$HOMEBREW_PREFIX/share/zsh/site-functions/"
+  if [ "$SHELL_NAME" = "bash" ]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  fi
+
 fi
 
 path_add "$DOTFILES_DIR/bin"
@@ -157,18 +137,15 @@ infopath_add "$HOME/info"
 fpath_add "$HOME/fn"
 
 # ~~ main ~~
-source_dir() {
-  for file in "$DOTFILES_DIR"/shell/"$1"/*; do
+if [ -n "$SHELL_NAME" ]; then
+  for file in "$DOTFILES_DIR"/shell/sh/* "$DOTFILES_DIR"/shell/"$SHELL_NAME"/* "$DOTFILES_DIR"/shell/plugins/*; do
     source "$file"
   done
-  unset file
-}
-
-source_dir sh
-source_dir plugins
-if [ "$1" != '--no-shell' ] && [ -n "$SHELL_NAME" ]; then
-  source_dir "$SHELL_NAME"
+else
+  for file in "$DOTFILES_DIR"/shell/sh/* "$DOTFILES_DIR"/shell/plugins/*; do
+    source "$file"
+  done
 fi
+unset file
 
-unset -f source_dir
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+#zprof

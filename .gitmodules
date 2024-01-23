@@ -15,3 +15,9 @@
 	path = submodules/p10k
 	url = https://github.com/romkatv/powerlevel10k
   shallow = true
+[submodule "submodules/zsh-autosuggestions"]
+	path = submodules/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "submodules/F-Sy-H"]
+	path = submodules/F-Sy-H
+	url = https://github.com/z-shell/F-Sy-H

@@ -17,6 +17,9 @@ alias mkdir='mkdir -p'
 
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 alias dotbot="$DOTFILES_DIR/submodules/dotbot/bin/dotbot -d '$DOTFILES_DIR' -c '$DOTFILES_DIR/dotbot.json'"
+alias bp="cd ~/BrandonProjects/"
+alias p="cd ~/Projects/"
+alias gs='git status'
 
 # use coreutils ls if it exists
 if cmd_exists "eza"; then

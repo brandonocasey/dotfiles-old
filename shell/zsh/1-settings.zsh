@@ -4,6 +4,10 @@
 # Allow tab completion with aliases
 setopt COMPLETE_ALIASES
 
+# allow comments in interactive commands
+setopt INTERACTIVE_COMMENTS
+
+setopt COMPLETE_IN_WORD
 
 # -- History --
 # remove older commands from the history list that are duplicates of the current one
@@ -21,8 +25,3 @@ unsetopt MAIL_WARN
 
 # -- ZLE --
 unsetopt BEEP
-
-# TODO: This needs to go after plugins i think
-autoload -U compinit
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"

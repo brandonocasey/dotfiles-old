@@ -1,11 +1,16 @@
 #!/usr/bin/env zsh
 
-current_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+function zcompile-many() {
+  local f
+  for f; do zcompile -R -- "$f".zwc "$f"; done
+}
 
-source "${current_dir}/shell/index.sh" --no-shell
+current_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 
 echo "Installing submodules"
 git submodule update --init --recursive
+
+source "${current_dir}/shell/index.sh"
 
 echo "$PATH"
 echo "Installing with dotbot"
@@ -18,10 +23,22 @@ asdf plugin add python
 asdf plugin add direnv
 asdf install nodejs
 asdf install python
+asdf direnv setup --version latest
 
-if [ "$(basename "$SHELL")" != 'zsh' ] && cmd_exists zsh; then
+echo "compiling zsh plugins"
+zcompile-many "$DOTFILES_DIR"/submodules/F-Sy-H/F-Sy-H.plugin.zsh
+zcompile-many "$DOTFILES_DIR"/submodules/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}
+make -C "$DOTFILES_DIR/submodules/p10k" pkg
+
+best_zsh="$(which zsh)"
+echo "shell should be $best_zsh"
+if [ "$SHELL" != "$best_zsh" ] && cmd_exists zsh; then
   echo "Setting default shell to zsh"
-  chsh -s "$(which zsh)"
+  if ! grep -q "$best_zsh" /etc/shells; then
+    echo "Adding $best_zsh to /etc/shells"
+    echo "$best_zsh" | sudo tee -a /etc/shells
+  fi
+  chsh -s "$best_zsh"
 else
   echo "Default shell is already zsh"
 fi
@@ -58,7 +75,7 @@ if [ -d "$HOME/.docker" ]; then
   if [ -d "$XDG_STATE_HOME/docker" ]; then
     echo "duplicate dir $HOME/.docker and $XDG_STATE_HOME/docker"
   else
-    mv "$HOME/.docker" "$XDG_CONFIG_HOME/docker"
+    mv "$HOME/.docker/*" "$XDG_CONFIG_HOME/docker/"
   fi
 fi
 
@@ -153,11 +170,11 @@ if [ -f "$HOME/.wget-hsts" ]; then
   fi
 fi
 
-if [ -f "$HOME/.zcompcache" ]; then
- if [ -f "$XDG_CACHE_HOME/zsh/zcompcache" ]; then
-    echo "duplicate file $HOME/.zcompcache and $XDG_CACHE_HOME/zsh/zcompcache"
+if [ -d "$HOME/.zcompcache" ]; then
+ if [ -d "$XDG_CACHE_HOME/zsh/zcompcache" ]; then
+    echo "duplicate dir $HOME/.zcompcache and $XDG_CACHE_HOME/zsh/zcompcache"
   else
-    mv "$HOME/.zcompdump" "$XDG_CACHE_HOME/zsh/zcompcache"
+    mv "$HOME/.zcompcache" "$XDG_CACHE_HOME/zsh/zcompcache"
   fi
 fi
 
