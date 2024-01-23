@@ -46,8 +46,8 @@ export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
-export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
-export RIPGREP_CONFIG_PATH="$XDG_DATA_HOME/ripgrep/config"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
 # Don't warn me about mail
 unset MAILCHECK

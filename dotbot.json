@@ -27,6 +27,18 @@
       "$XDG_CONFIG_HOME/nvim/lua/custom": "configs/nvim/nvchad",
       "$XDG_CONFIG_HOME/vim/vimrc": "configs/vim/vimrc",
       "$XDG_CONFIG_HOME/direnv/direnv.toml": "configs/direnv.toml",
+      "~/.vscode-oss/extensions/extensions.json": {
+        "path": "configs/vscodium-extensions.json",
+        "if": "[ $(uname) = Darwin ]"
+      },
+      "~/Library/Application Support/VSCodium/User/settings.json": {
+        "path": "configs/vscodium-settings.json",
+        "if": "[ $(uname) = Darwin ]"
+      },
+      "~/Library/Application Support/com.nuebling.mac-mouse-fix/config.plist": {
+        "path": "os/mac/configs/mac-mouse-fix.plist",
+        "if": "[ $(uname) = Darwin ]"
+      },
       "~/.tool-versions": "configs/tool-versions",
       "~/.telnetrc": "configs/telnetrc",
       "~/.envrc": "configs/envrc",

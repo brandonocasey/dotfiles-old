@@ -111,6 +111,7 @@ path_add "$HOME/.cargo/bin"
 path_add "/usr/local/sbin"
 manpath_add "/usr/share/man"
 manpath_add "/usr/local/share/man"
+path_add "$XDG_DATA_HOME/npm/bin"
 
 if cmd_exists "brew"; then
   export HOMEBREW_PREFIX="$(brew --prefix)"
@@ -123,14 +124,15 @@ if cmd_exists "brew"; then
   fpath_add "$HOMEBREW_PREFIX/share/zsh/site-functions/"
 fi
 
+
 path_add "$DOTFILES_DIR/bin"
 manpath_add "$DOTFILES_DIR/man"
 infopath_add "$DOTFILES_DIR/info"
-fpath_add "$DOTFILES_DIR/fn"
+fpath_add "$DOTFILES_DIR/shell/zsh-functions"
 path_add "$HOME/bin"
 manpath_add "$HOME/man"
 infopath_add "$HOME/info"
-fpath_add "$HOME/fn"
+fpath_add "$HOME/zsh-functions"
 
 # ~~ main ~~
 if [ -n "$SHELL_NAME" ]; then
