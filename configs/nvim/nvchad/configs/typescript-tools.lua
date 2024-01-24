@@ -1,12 +1,11 @@
+local capabilities = require("plugins.configs.lspconfig").capabilities
+
 local M = {
-  settings = {
-    --  hhttps://github.com/pmizio/typescript-tools.nvim/blob/master/lua/typescript-tools/config.lua#L17
-    tsserver_format_options = {
-      insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
-      insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
-      insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
-    }
-  }
+  on_attach = function(client)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end,
+  capabilities = capabilities
 }
 
 

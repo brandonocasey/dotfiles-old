@@ -1,15 +1,15 @@
 -- A global variable for the Hyper Mode
-hyper = hs.hotkey.modal.new({}, 'F17')
+hyper = hs.hotkey.modal.new({}, nil)
 
 -- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
-function enterHyperMode()
+hyper.pressed = function()
   hyper.triggered = false
   hyper:enter()
 end
 
 -- Leave Hyper Mode when F18 (Hyper/Capslock) is pressed,
 -- send ESCAPE if no other keys are pressed.
-function exitHyperMode()
+hyper.released = function()
   hyper:exit()
   if not hyper.triggered then
     hs.eventtap.keyStroke({}, 'ESCAPE')
@@ -27,7 +27,7 @@ hyper:bind({}, "l", function()
 end)
 
 -- Bind the Hyper key
-f18 = hs.hotkey.bind({}, 'F18', enterHyperMode, exitHyperMode)
+hs.hotkey.bind({}, 'F18', hyper.pressed, hyper.released)
 
 local function reload_config()
   hs.reload()
@@ -38,5 +38,5 @@ hyper:bind({}, "r", function()
   hyper.triggered = true
 end)
 
-hs.pathwatcher.new(os.getenv("XDG_CONFIG_HOME") .. "/hammerspoon/", reload_config):start()
+hs.pathwatcher.new(os.getenv("HOME") .. "/.config/hammerspoon/", reload_config):start()
 hs.alert.show("Config loaded")

@@ -60,15 +60,15 @@ local plugins = {
   },
 
   -- lua version of typescript-language-server
-  {
-    "pmizio/typescript-tools.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-    config = function()
-      require "custom.configs.typescript-tools"
-    end,
-  },
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   opts = {},
+  --   config = function()
+  --     require "custom.configs.typescript-tools"
+  --   end,
+  -- },
 
   {
     "ahmedkhalf/project.nvim",
