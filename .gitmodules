@@ -23,3 +23,7 @@
 	path = submodules/F-Sy-H
 	url = https://github.com/z-shell/F-Sy-H
   shallow = true
+[submodule "submodules/wezterm"]
+	path = submodules/wezterm
+	url = https://github.com/wez/wezterm
+  shallow = true

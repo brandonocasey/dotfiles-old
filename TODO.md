@@ -6,4 +6,3 @@
 * zoxide
 * global packages
 * checkout and install fonts
-* better wezterm integration
