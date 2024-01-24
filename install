@@ -8,11 +8,11 @@ function zcompile-many() {
 current_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 
 echo "Installing submodules"
-git submodule update --init --depth 1
+git -C "$current_dir" submodule update --init --depth 1
+git -C "$current_dir" submodule update --init --recursive submodules/dotbot
 
 source "${current_dir}/shell/index.sh"
 
-echo "$PATH"
 echo "Installing with dotbot"
 echo "$current_dir/submodules/dotbot/bin/dotbot"
 "$current_dir/submodules/dotbot/bin/dotbot" -d "$current_dir" -c "$current_dir/dotbot.json"

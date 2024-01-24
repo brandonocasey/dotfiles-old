@@ -27,12 +27,3 @@
 	path = submodules/wezterm
 	url = https://github.com/wez/wezterm
   shallow = true
-[submodule "submodules/wezterm/deps/harfbuzz"]
-  update = none
-	path = submodules/wezterm/deps/harfbuzz
-[submodule "submodules/wezterm/deps/freetype"]
-  update = none
-	path = submodules/wezterm/deps/freetype
-[submodule "submodules/wezterm/deps/freetype"]
-  update = none
-	path = submodules/wezterm/deps/freetype
