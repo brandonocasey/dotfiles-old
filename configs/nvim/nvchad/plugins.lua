@@ -62,7 +62,7 @@ local plugins = {
   -- lua version of typescript-language-server
   {
     "pmizio/typescript-tools.nvim",
-    lazy = false,
+    event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
     config = function()

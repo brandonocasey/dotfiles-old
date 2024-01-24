@@ -45,8 +45,8 @@ M.mason = {
     "eslint-lsp",
     "stylelint-lsp",
     "eslint_d",
-    -- handled by typescript-tools.nvim
-    -- "typescript-language-server",
+    -- somewhat handled by typescript-tools.nvim
+    "typescript-language-server",
 
 
     -- github actions
