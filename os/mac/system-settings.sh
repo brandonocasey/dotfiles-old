@@ -135,8 +135,8 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 killall Dock
 killall Finder
 
-curl -O https://github.com/googlefonts/Inconsolata/releases/download/v3.000/Inconsolata-VF.ttf
-open Inconsolata-VF.ttf
+# Specify the preferences directory
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.config/dotfiles/os/mac/configs/iterm2"
 
-mkdir ~/Library/KeyBindings/
-cp ./config/DefaultKeyBinding.dict ~/Library/Keybindings/
+# Tell iTerm2 to use the custom preferences in the directory
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true

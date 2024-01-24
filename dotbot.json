@@ -39,6 +39,18 @@
         "path": "os/mac/configs/mac-mouse-fix.plist",
         "if": "[ $(uname) = Darwin ]"
       },
+      "~/.config/karabiner": {
+        "path": "os/mac/configs/karabiner",
+        "if": "[ $(uname) = Darwin ]"
+      },
+      "~/.config/iterm2": {
+        "path": "os/mac/configs/iterm2",
+        "if": "[ $(uname) = Darwin ]"
+      },
+      "~/Library/Application Support/Rectangle/RectangleConfig.json": {
+        "path": "os/mac/configs/RectangleConfig.json",
+        "if": "[ $(uname) = Darwin ]"
+      },
       "~/.tool-versions": "configs/tool-versions",
       "~/.telnetrc": "configs/telnetrc",
       "~/.envrc": "configs/envrc",
