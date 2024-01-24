@@ -47,6 +47,10 @@
         "path": "os/mac/configs/iterm2",
         "if": "[ $(uname) = Darwin ]"
       },
+      "~/.config/hammerspoon": {
+        "path": "os/mac/configs/hammerspoon",
+        "if": "[ $(uname) = Darwin ]"
+      },
       "~/Library/Application Support/Rectangle/RectangleConfig.json": {
         "path": "os/mac/configs/RectangleConfig.json",
         "if": "[ $(uname) = Darwin ]"

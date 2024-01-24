@@ -41,12 +41,12 @@ brew 'grex'
 brew 's-search'
 # async jobs on the terminal
 brew 'pueue'
-# shell dependency manager with support for zsh, bash etc
-brew 'sheldon'
 # LS_COLOR creator
 brew 'vivid'
 # xdg warnings
 brew 'xdg-ninja'
+# advanced keybinds
+brew 'hammerspoon'
 
 # /~-~-~ Apps ~-~-~\
 

@@ -144,6 +144,10 @@ else
     source "$file"
   done
 fi
+
+if [ "$TERM_PROGRAM" = "WezTerm" ]; then
+  source "$DOTFILES_DIR/shell/vendor/wezterm.sh"
+fi
 unset file
 
 #zprof

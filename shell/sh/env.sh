@@ -37,6 +37,11 @@ export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
+export GEM_HOME="$XDG_DATA_HOME/gem"
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
+export MYSQL_HISTFILE="$XDG_DATA_HOME/mysql_history"
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export KODI_DATA="$XDG_DATA_HOME/kodi"
 
 # export GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | so $MYGVIMRC'
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'

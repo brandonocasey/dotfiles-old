@@ -5,3 +5,5 @@
 * p10k asdf-direnv
 * zoxide
 * global packages
+* checkout and install fonts
+* better wezterm integration

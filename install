@@ -47,6 +47,7 @@ echo "Installing fzf binary"
 "$current_dir/submodules/fzf/install" --bin
 
 echo "Migrating files to XDG directories"
+touch "$XDG_STATE_HOME/python_history"
 if [ -d "$HOME/.android" ]; then
   if [ -d "$XDG_DATA_HOME/android" ]; then
     echo "duplicate dir $HOME/.android and $XDG_DATA_HOME/android"
