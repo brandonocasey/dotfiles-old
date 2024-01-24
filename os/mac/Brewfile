@@ -45,8 +45,6 @@ brew 'pueue'
 brew 'vivid'
 # xdg warnings
 brew 'xdg-ninja'
-# advanced keybinds
-brew 'hammerspoon'
 
 # /~-~-~ Apps ~-~-~\
 
@@ -67,6 +65,10 @@ cask 'hex-fiend'
 cask 'speedcrunch'
 cask 'docker'
 cask 'heynote'
+
+# advanced keybinds
+cask 'hammerspoon'
+
 
 # Utilities
 cask 'keka'

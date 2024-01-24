@@ -18,6 +18,8 @@
 [submodule "submodules/zsh-autosuggestions"]
 	path = submodules/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+  shallow = true
 [submodule "submodules/F-Sy-H"]
 	path = submodules/F-Sy-H
 	url = https://github.com/z-shell/F-Sy-H
+  shallow = true

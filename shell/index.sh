@@ -2,11 +2,12 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+#
+#zmodload zsh/zprof
+
 if [ -n "$ZSH_VERSION" ] && [ -f "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-#zmodload zsh/zprof
-
 
 # ~~ Functions ~~
 cmd_exists() {
@@ -17,35 +18,45 @@ cmd_exists() {
   return 1
 }
 
-_add_to_pathvar() {
+path_add() {
   # remove trailing slashes
-  local pathvar="${1%%+(/)}"
-  local dir="${2%%+(/)}"
+  local dir="${1%%+(/)}"
 
   case ":${PATH:=$dir}:" in
     *:"$dir":*)  ;;
-    *) pathvar="$pathvar:$dir"  ;;
+    *) PATH="$PATH:$dir"  ;;
   esac
-
-
-  printf '%s' "$pathvar"
-}
-
-
-path_add() {
-  PATH="$(_add_to_pathvar "$PATH" "$1" "$2")"
 }
 
 manpath_add() {
-  MANPATH="$(_add_to_pathvar "$MANPATH" "$1" "$2")"
+  # remove trailing slashes
+  local dir="${1%%+(/)}"
+
+  case ":${MANPATH:=$dir}:" in
+    *:"$dir":*)  ;;
+    *) MANPATH="$MANPATH:$dir"  ;;
+  esac
 }
 
 infopath_add() {
-  INFOPATH="$(_add_to_pathvar "$INFOPATH" "$1" "$2")"
+  # remove trailing slashes
+  local dir="${1%%+(/)}"
+
+  case ":${INFOPATH:=$dir}:" in
+    *:"$dir":*)  ;;
+    *) INFOPATH="$INFOPATH:$dir"  ;;
+  esac
 }
 
 fpath_add() {
-  FPATH="$(_add_to_pathvar "$FPATH" "$1" "$2")"
+  # remove trailing slashes
+  local dir="${1%%+(/)}"
+
+  case ":${FPATH:=$dir}:" in
+    *:"$dir":*)  ;;
+    *) FPATH="$FPATH:$dir"  ;;
+  esac
+
 }
 
 # ~~ Shared Exports ~~
@@ -122,6 +133,11 @@ if cmd_exists "brew"; then
   manpath_add "$HOMEBREW_PREFIX/share/man"
   infopath_add "$HOMEBREW_PREFIX/share/info"
   fpath_add "$HOMEBREW_PREFIX/share/zsh/site-functions/"
+fi
+
+
+if cmd_exists "docker"; then
+  path_add "$DOTFILES_DIR/docker-bin"
 fi
 
 

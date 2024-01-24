@@ -8,7 +8,7 @@ function zcompile-many() {
 current_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 
 echo "Installing submodules"
-git submodule update --init --recursive
+git submodule update --init --recursive --depth=1
 
 source "${current_dir}/shell/index.sh"
 
@@ -16,6 +16,11 @@ echo "$PATH"
 echo "Installing with dotbot"
 echo "$current_dir/submodules/dotbot/bin/dotbot"
 "$current_dir/submodules/dotbot/bin/dotbot" -d "$current_dir" -c "$current_dir/dotbot.json"
+
+if [ -n "$OS_NAME" ] && [ -f "$current_dir/os/$OS_NAME/install.sh" ]; then
+  echo "Installing os specific stuff"
+  source "$current_dir/os/$OS_NAME/install.sh"
+fi
 
 echo "Installing asdf plugins"
 asdf plugin add nodejs
