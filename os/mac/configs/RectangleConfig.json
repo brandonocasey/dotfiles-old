@@ -49,6 +49,15 @@
     "disabledApps" : {
 
     },
+    "doubleClickTitleBar" : {
+      "int" : 0
+    },
+    "doubleClickTitleBarIgnoredApps" : {
+
+    },
+    "doubleClickTitleBarRestore" : {
+      "int" : 0
+    },
     "dragFromStage" : {
       "int" : 0
     },
@@ -78,6 +87,9 @@
     },
     "hideMenubarIcon" : {
       "bool" : true
+    },
+    "ignoreDragSnapToo" : {
+      "int" : 0
     },
     "ignoredSnapAreas" : {
       "int" : 0
@@ -181,6 +193,9 @@
     "SUEnableAutomaticChecks" : {
       "bool" : false
     },
+    "systemWideMouseDown" : {
+      "int" : 0
+    },
     "todo" : {
       "int" : 0
     },
@@ -209,11 +224,11 @@
   "shortcuts" : {
     "bottomHalf" : {
       "keyCode" : 125,
-      "modifierFlags" : 786432
+      "modifierFlags" : 1966080
     },
     "bottomLeft" : {
       "keyCode" : 20,
-      "modifierFlags" : 1572864
+      "modifierFlags" : 1966080
     },
     "bottomRight" : {
       "keyCode" : 21,
@@ -249,11 +264,11 @@
     },
     "leftHalf" : {
       "keyCode" : 123,
-      "modifierFlags" : 1572864
+      "modifierFlags" : 1966080
     },
     "maximize" : {
       "keyCode" : 9,
-      "modifierFlags" : 1572864
+      "modifierFlags" : 1966080
     },
     "maximizeHeight" : {
       "keyCode" : 126,
@@ -277,7 +292,7 @@
     },
     "rightHalf" : {
       "keyCode" : 124,
-      "modifierFlags" : 1572864
+      "modifierFlags" : 1966080
     },
     "smaller" : {
       "keyCode" : 27,
@@ -289,16 +304,16 @@
     },
     "topHalf" : {
       "keyCode" : 126,
-      "modifierFlags" : 786432
+      "modifierFlags" : 1966080
     },
     "topLeft" : {
       "keyCode" : 18,
-      "modifierFlags" : 1572864
+      "modifierFlags" : 1966080
     },
     "topRight" : {
       "keyCode" : 19,
-      "modifierFlags" : 1572864
+      "modifierFlags" : 1966080
     }
   },
-  "version" : "74"
+  "version" : "81"
 }
