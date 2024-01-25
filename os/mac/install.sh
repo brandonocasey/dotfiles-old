@@ -1,21 +1,16 @@
 #echo "Getting sudo permissions"
 #\sudo -v
 
-echo "Installing xcode stuff"
-xcode-select --install
-#sudo xcodebuild -license accept
+run_dotfile_cmd xcode-select --install
+run_dotfile_cmd sudo xcodebuild -license accept
 
 if ! cmd_exists brew; then
-  echo "installing brew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  run_dotfile_cmd /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 export HOMEBREW_BUNDLE_FILE_GLOBAL="$DOTFILES_DIR/os/mac/Brewfile"
-echo "Installing brew bundles"
 
-brew bundle --global
-
-echo "Writings settings"
+run_dotfile_cmd_async brew bundle --global
 
 # Set dock size
 defaults write com.apple.dock tilesize -int 75
@@ -153,6 +148,12 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 killall Dock
 killall Finder
+killall Rectangle || true
+killall Hammerspoon || true
+killall Karabiner-Elements || true
+open /Applications/Hammerspoon.app/
+open /Applications/Karabiner-Elements.app/
+open /Applications/Rectangle/
 
 # Specify the preferences directory
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$XDG_CONFIG_HOME/.iterm2"

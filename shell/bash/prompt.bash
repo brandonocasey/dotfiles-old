@@ -25,7 +25,7 @@ fi
 get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
-  ref="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's~refs/heads/~~')"
+  local ref="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's~refs/heads/~~')"
   if [ -n "$ref" ]; then
     printf "%s" " [$ref]"
   fi
@@ -65,3 +65,9 @@ PS1+=" "                      # space
 
 # disable cursor blink
 printf '\033[?12l'
+
+unset COLOR_TWO
+unset COLOR_THREE
+unset COLOR_FOUR
+unset COLOR_FIVE
+unset UID_CHAR

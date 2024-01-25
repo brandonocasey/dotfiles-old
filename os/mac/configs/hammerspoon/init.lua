@@ -1,3 +1,8 @@
+-- @globals hs
+-- allow command line operations
+hs.ipc.cliInstall()
+
+
 local hyper = hs.hotkey.modal.new({}, nil)
 
 -- See https://github.com/Hammerspoon/hammerspoon/issues/1984

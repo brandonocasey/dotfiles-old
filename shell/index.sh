@@ -81,7 +81,6 @@ if [ -z "$XDG_DATA_HOME" ]; then
   export XDG_DATA_HOME="$HOME/.local/share"
 fi
 
-
 if [ -z "$XDG_CONFIG_HOME" ]; then
   export XDG_CONFIG_HOME="$HOME/.config"
 fi
@@ -102,7 +101,7 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
   fi
 fi
 
-export DOTFILES_DIR="$XDG_CONFIG_HOME/dotfiles"
+export DOTFILES_DIR="$HOME/.config/dotfiles"
 
 # ~~ PATH ~~
 # PATH Priority is
@@ -134,7 +133,6 @@ if cmd_exists "brew"; then
   infopath_add "$HOMEBREW_PREFIX/share/info"
   fpath_add "$HOMEBREW_PREFIX/share/zsh/site-functions/"
 fi
-
 
 if cmd_exists "docker"; then
   path_add "$DOTFILES_DIR/docker-bin"

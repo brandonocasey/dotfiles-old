@@ -1,19 +1,19 @@
 # shellcheck shell=sh
 #
 # Ask before over-writing a file
-alias mv='mv -iv'
+alias mv='mv -i'
 
 # Ask before deleting a file, and automatically make it recursive
-alias rm='rm -iv'
+alias rm='rm -i'
 
 # Ask before over-writing a file and recursively copy by default
-alias cp='cp -irv'
+alias cp='cp -ir'
 
 # We want free disc space in human readable output, trust me
 alias df='df -h'
 
 # Automatically make directories recursively
-alias mkdir='mkdir -pv'
+alias mkdir='mkdir -p'
 
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 alias dotbot="$DOTFILES_DIR/submodules/dotbot/bin/dotbot -d '$DOTFILES_DIR' -c '$DOTFILES_DIR/dotbot.json'"
