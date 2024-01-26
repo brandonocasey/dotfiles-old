@@ -32,13 +32,13 @@ link_files=(
 
 if [ "$OS_NAME" = 'mac' ]; then
   link_files+=(
-    ["$XDG_CONFIG_HOME/karabiner"]="os/mac/configs/karabiner"
-    ["$XDG_CONFIG_HOME/iterm2"]="os/mac/configs/iterm2"
-    ["$XDG_CONFIG_HOME/hammerspoon"]="os/mac/configs/hammerspoon"
+    ["$XDG_CONFIG_HOME/karabiner"]="configs/mac/karabiner"
+    ["$XDG_CONFIG_HOME/iterm2"]="configs/mac/iterm2"
+    ["$XDG_CONFIG_HOME/hammerspoon"]="configs/mac/hammerspoon"
     ["$HOME/.vscode-oss/extensions/extensions.json"]="configs/vscodium-extensions.json"
     ["$HOME/Library/Application Support/VSCodium/User/settings.json"]="configs/vscodium-settings.json"
-    ["$HOME/Library/Application Support/com.nuebling.mac-mouse-fix/config.plist"]="os/mac/configs/mac-mouse-fix.plist"
-    ["$HOME/Library/Application Support/Rectangle/RectangleConfig.json"]="os/mac/configs/RectangleConfig.json"
+    ["$HOME/Library/Application Support/com.nuebling.mac-mouse-fix/config.plist"]="configs/mac/mac-mouse-fix.plist"
+    ["$HOME/Library/Application Support/Rectangle/RectangleConfig.json"]="configs/mac/RectangleConfig.json"
   )
 fi
 

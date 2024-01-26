@@ -91,6 +91,7 @@ cask 'wireshark'
 
 # work
 cask 'zoom'
+cask 'logitune'
 
 # Media
 cask 'plex'

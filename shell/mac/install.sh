@@ -8,7 +8,7 @@ if ! cmd_exists brew; then
   run_dotfile_cmd /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-export HOMEBREW_BUNDLE_FILE_GLOBAL="$DOTFILES_DIR/os/mac/Brewfile"
+export HOMEBREW_BUNDLE_FILE_GLOBAL="$DOTFILES_DIR/Brewfile"
 
 run_dotfile_cmd_async brew bundle --global
 
@@ -196,5 +196,4 @@ echo "- sublime"
 echo "- vscodium"
 echo "- openvpn"
 
-echo "Install logitune https://support.logi.com/hc/en-nz/articles/360024849133-Download-HD-Pro-Webcam-C920"
 echo "Install Epson printer utils"

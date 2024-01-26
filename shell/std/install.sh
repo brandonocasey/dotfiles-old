@@ -31,12 +31,8 @@ run_dotfile_cmd_async() {
   disown
 }
 
-DOT_INSTALL_FILES=(
-
-)
-
 for file in "$DOTFILES_DIR"/shell/install/*; do
-  echo "~~ $("$file" | sed "s~$DOTFILES_DIR/~~") ~~" >> "$DOTFILES_LOG"
+  echo "~~ $(basename "$file") ~~" >> "$DOTFILES_LOG"
   safe_source "$file"
 done
 
