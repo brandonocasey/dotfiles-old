@@ -1,14 +1,4 @@
-# shellcheck shell=sh
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-#
-#zmodload zsh/zprof
-
-if [ -n "$ZSH_VERSION" ] && [ -f "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
+# shellcheck shell=bash
 # ~~ Functions ~~
 cmd_exists() {
   if command -v "$1" >/dev/null 2>&1; then
@@ -56,7 +46,10 @@ fpath_add() {
     *:"$dir":*)  ;;
     *) FPATH="$FPATH:$dir"  ;;
   esac
+}
 
+safe_source() {
+  [ -f "$1" ] && source "$1"
 }
 
 # ~~ Shared Exports ~~
@@ -77,21 +70,10 @@ fi
 
 unset UNAME
 
-if [ -z "$XDG_DATA_HOME" ]; then
-  export XDG_DATA_HOME="$HOME/.local/share"
-fi
-
-if [ -z "$XDG_CONFIG_HOME" ]; then
-  export XDG_CONFIG_HOME="$HOME/.config"
-fi
-
-if [ -z "$XDG_STATE_HOME" ]; then
-  export XDG_STATE_HOME="$HOME/.local/state"
-fi
-
-if [ -z "$XDG_CACHE_HOME" ]; then
-  export XDG_CACHE_HOME="$HOME/.cache"
-fi
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
 if [ -z "$XDG_RUNTIME_DIR" ]; then
   if [ "$OS_NAME" = 'mac' ]; then
@@ -101,7 +83,8 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
   fi
 fi
 
-export DOTFILES_DIR="$HOME/.config/dotfiles"
+export DOTFILES_DIR="$XDG_CONFIG_HOME/dotfiles"
+export DOTFILES_BUILD_DIR="$XDG_DATA_HOME/dotfiles"
 
 # ~~ PATH ~~
 # PATH Priority is
@@ -123,7 +106,7 @@ manpath_add "/usr/share/man"
 manpath_add "/usr/local/share/man"
 path_add "$XDG_DATA_HOME/npm/bin"
 
-if cmd_exists "brew"; then
+if cmd_exists brew; then
   export HOMEBREW_PREFIX="$(brew --prefix)"
   # See https://docs.brew.sh/Analytics
   export HOMEBREW_NO_ANALYTICS=1
@@ -134,10 +117,9 @@ if cmd_exists "brew"; then
   fpath_add "$HOMEBREW_PREFIX/share/zsh/site-functions/"
 fi
 
-if cmd_exists "docker"; then
+if cmd_exists docker; then
   path_add "$DOTFILES_DIR/docker-bin"
 fi
-
 
 path_add "$DOTFILES_DIR/bin"
 manpath_add "$DOTFILES_DIR/man"
@@ -148,17 +130,17 @@ manpath_add "$HOME/man"
 infopath_add "$HOME/info"
 fpath_add "$HOME/zsh-functions"
 
-# ~~ main ~~
-if [ -n "$SHELL_NAME" ]; then
-  for file in "$DOTFILES_DIR"/shell/sh/* "$DOTFILES_DIR"/shell/"$SHELL_NAME"/* "$DOTFILES_DIR"/shell/plugins/*; do
-    source "$file"
-  done
-else
-  for file in "$DOTFILES_DIR"/shell/sh/* "$DOTFILES_DIR"/shell/plugins/*; do
-    source "$file"
-  done
-fi
+declare -A DOTFILES_PLUGINS
+DOTFILES_PLUGINS+=(
+  ["wezterm"]="https://cdn.githubraw.com/wez/wezterm/29d8bcc6eaae5b5d70d9d4339ca24f68a00eb7a9/assets/shell-integration/wezterm.sh"
+  ["zsh-autocomplete"]="https://cdn.githubraw.com/marlonrichert/zsh-autocomplete/c7b65508fd3a016dc9cdb410af9ee7806b3f9be1/zsh-autocomplete.plugin.zsh"
+  ["F-Sy-H"]="https://cdn.githubraw.com/z-shell/F-Sy-H/3dea11a9018061e6e3a77e529b79e5654679d3a0/F-Sy-H.plugin.zsh"
+  ["powerlevel10k"]="https://cdn.githubraw.com/romkatv/powerlevel10k/bd0fa8a0/powerlevel10k.zsh-theme"
+)
 
-unset file
+# TODO only do if the install directory is missing
+#safe_source "$DOTFILES_DIR/os/${OS_NAME}/entrypoint.sh"
+#safe_source "$DOTFILES_DIR/shell/install.sh"
+#safe_source "$DOTFILES_DIR/shell/env.sh"
 
-#zprof
+unset DOTFILES_PLUGINS

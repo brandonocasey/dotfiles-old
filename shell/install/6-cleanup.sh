@@ -15,7 +15,10 @@ move_list+=(["$HOME/.python_history"]="$XDG_CACHE_HOME/python_history")
 move_list+=(["$HOME/.wget-hsts"]="$XDG_DATA_HOME/wget-hsts")
 move_list+=(["$HOME/.zsh_history"]="$XDG_STATE_HOME/zsh/history")
 
-# TODO: fix for bash move_files+=(["$HOME/.zcompdump"]="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION")
+if cmd_exists zsh; then
+  move_list+=(["$HOME/.zcompdump"]="$XDG_CACHE_HOME/zsh/zcompdump-$(zsh -c 'echo "$ZSH_VERSION"')")
+fi
+
 keys=()
 keys_for_array move_list keys
 

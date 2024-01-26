@@ -1,3 +1,4 @@
 configs/npmrc
 os/mac/configs/karabiner/*
 !os/mac/configs/karabiner/karabiner.json
+.install
