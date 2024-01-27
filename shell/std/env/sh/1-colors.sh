@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# TODO: cache this in DOTFILES_CACHE_DIR
 if tput setaf 1>/dev/null 2>/dev/null; then
   tput sgr0 1>/dev/null 2>/dev/null
   if [[ "$(tput colors)" -ge 256 ]] 2>/dev/null; then

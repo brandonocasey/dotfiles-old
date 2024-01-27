@@ -8,9 +8,10 @@ if ! cmd_exists brew; then
   run_dotfile_cmd /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-export HOMEBREW_BUNDLE_FILE_GLOBAL="$DOTFILES_DIR/Brewfile"
+run_dotfile_cmd brew bundle --global
 
-run_dotfile_cmd_async brew bundle --global
+# set asdf/fzf after install
+source "$DOTFILES_DIR/shell/mac/shared.sh"
 
 # Set dock size
 defaults write com.apple.dock tilesize -int 75

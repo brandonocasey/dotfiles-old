@@ -1,32 +1,47 @@
-# shellcheck shell=sh
+# shellcheck shell=bash
 
-editor='nano';
-
-# Set default command editor to vim
-if cmd_exists nvim; then
-  export MANPAGER="nvim +Man!"
-  editor='nvim'
-elif cmd_exists vim; then
-  editor='vim'
-elif bin_exist vi; then
-  editor='vi'
+if [ -n "$ZSH_VERSION" ]; then
+  export SHELL_NAME="zsh"
+elif [ -n "$BASH_VERSION" ]; then
+  export SHELL_NAME="bash"
 fi
 
-export FCEDIT=$editor
-export EDITOR=$editor
-export VISUAL=$editor
-export VISUAL_EDITOR=$editor
-export SVN_EDITOR=$editor
-export GIT_EDITOR=$editor
+UNAME="$(uname)"
 
-unset editor
-
-# themed ls colors
-if cmd_exists vivid; then
-  export LS_COLORS="$(vivid generate one-dark)"
-else
-  export LSCOLORS=GxFxCxDxBxegedabagaced
+# TODO: Windows?
+if [ "$UNAME" = "Darwin" ]; then
+  export OS_NAME="mac"
+elif [ "$UNAME" = "Linux" ]; then
+  export OS_NAME="linux"
 fi
+
+unset UNAME
+
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+if [ -z "$XDG_RUNTIME_DIR" ]; then
+  if [ "$OS_NAME" = 'mac' ]; then
+    export XDG_RUNTIME_DIR="$HOME/Library/Application Support"
+  elif [ "$OS_NAME" = 'linux' ]; then
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+  fi
+fi
+
+export HOMEBREW_PREFIX
+if cmd_exists brew; then
+  if [ -f "$DOTFILES_CACHE_DIR/homebrew_prefix" ]; then
+    HOMEBREW_PREFIX="$(cat "$DOTFILES_CACHE_DIR/homebrew_prefix")"
+  else
+    HOMEBREW_PREFIX="$(brew --prefix)"
+    echo "$HOMEBREW_PREFIX" > "$DOTFILES_CACHE_DIR/homebrew_prefix"
+  fi
+  # See https://docs.brew.sh/Analytics
+  export HOMEBREW_NO_ANALYTICS=1
+fi
+
 
 # XDG config location overrides
 export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
@@ -53,13 +68,3 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
-
-# Don't warn me about mail
-unset MAILCHECK
-
-# finding things
-export GREP_OPTIONS="--color=auto"
-
-# 1 Billion lines of history
-export HISTSIZE=10000000
-export HISTFILESIZE=$HISTSIZE

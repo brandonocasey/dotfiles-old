@@ -1,7 +1,6 @@
 # shellcheck shell=bash
-safe_source() {
-  [ -f "$1" ] && source "$1"
-}
+for file in "$DOTFILES_DIR"/shell/std/shared/*; do
+  safe_source "$file"
+done
 
-safe_source "$DOTFILES_DIR/shell/std/shared.sh"
-safe_source "$DOTFILES_DIR/shell/${OS_NAME}/shared.sh"
+unset file

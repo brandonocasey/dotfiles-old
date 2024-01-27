@@ -1417,7 +1417,7 @@
         }
       },
       "microsoft-edge": {
-        "version": "120.0.2210.144,862258a6-7126-4139-92bc-dc7d7c852375",
+        "version": "121.0.2277.83,fe83d10e-9c11-45b7-8172-7af51bdaeb2b",
         "options": {
           "full_name": "microsoft-edge"
         }
@@ -1507,7 +1507,7 @@
         }
       },
       "calibre": {
-        "version": "7.4.0",
+        "version": "6.29.0",
         "options": {
           "full_name": "calibre"
         }
@@ -1535,12 +1535,18 @@
         "options": {
           "full_name": "replay"
         }
+      },
+      "logitune": {
+        "version": "3.5.173",
+        "options": {
+          "full_name": "logitune"
+        }
       }
     },
     "mas": {
       "Xcode": {
         "id": "497799835",
-        "version": "14.3"
+        "version": "14.2"
       }
     }
   },
@@ -1555,7 +1561,7 @@
         "macOS": "13.3.1"
       },
       "monterey": {
-        "HOMEBREW_VERSION": "4.2.3",
+        "HOMEBREW_VERSION": "4.2.5",
         "HOMEBREW_PREFIX": "/usr/local",
         "Homebrew/homebrew-core": "api",
         "CLT": "14.2.0.0.1.1668646533",

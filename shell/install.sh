@@ -2,7 +2,7 @@
 mkdir -p "$DOTFILES_BUILD_DIR"
 export DOTFILES_INSTALL_LOG="$DOTFILES_BUILD_DIR/install.log"
 
-: > "$DOTFILES_LOG"
+: > "$DOTFILES_INSTALL_LOG"
 
 # https://stackoverflow.com/a/51446108
 if [[ $ZSH_VERSION ]]; then
@@ -21,8 +21,15 @@ else
   echo "Unsupported Shell"
 fi
 
+dotfiles_log() {
+  local line
+  for line in "$@"; do
+    echo "$line" >> "$DOTFILES_INSTALL_LOG"
+  done
+}
+
 run_dotfile_cmd() {
-  echo "  $*" >> "$DOTFILES_LOG"
+  echo "  $*" >> "$DOTFILES_INSTALL_LOG"
   "$@"
 }
 
@@ -31,16 +38,11 @@ run_dotfile_cmd_async() {
   disown
 }
 
-DOT_INSTALL_FILES=(
-
-)
-
-for file in "$DOTFILES_DIR"/shell/install/*; do
-  echo "~~ $("$file" | sed "s~$DOTFILES_DIR/~~") ~~" >> "$DOTFILES_LOG"
-  safe_source "$file"
-done
+safe_source "$DOTFILES_DIR/shell/$OS_NAME/install.sh"
+safe_source "$DOTFILES_DIR/shell/std/install.sh"
 
 unset file
 unset -f keys_for_array
 unset DOTFILES_LOG
 unset -f run_dotfile_cmd
+unset -f run_dotfile_cmd_async

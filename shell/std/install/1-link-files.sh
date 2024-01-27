@@ -11,7 +11,6 @@ rm_files=(
 
 declare -A link_files
 link_files=(
-  ["$XDG_CONFIG_HOME/dotfiles"]="."
   ["$XDG_CONFIG_HOME/ripgrep/config"]="configs/ripgrep"
   ["$XDG_CONFIG_HOME/wezterm/wezterm.lua"]="configs/wezterm.lua"
   ["$XDG_CONFIG_HOME/git/config"]="configs/gitconfig"
@@ -22,6 +21,7 @@ link_files=(
   ["$XDG_CONFIG_HOME/npm/npmrc"]="configs/npmrc"
   ["$XDG_CONFIG_HOME/nvim/lua/custom"]="configs/nvim/nvchad"
   ["$XDG_CONFIG_HOME/direnv/direnv.toml"]="configs/direnv.toml"
+  ["$XDG_CONFIG_HOME/sheldon/plugins.toml"]="configs/sheldon.toml"
   ["$HOME/.tool-versions"]="configs/tool-versions"
   ["$HOME/.telnetrc"]="configs/telnetrc"
   ["$HOME/.envrc"]="configs/envrc"

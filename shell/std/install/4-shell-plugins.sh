@@ -1,5 +1,7 @@
 # Download plugins
 
+sheldon lock --update
+
 # asdf installs
 if [ -n "$ASDF_DIR" ] && [ -d "$ASDF_DIR" ] && cmd_exists asdf; then
   run_dotfile_cmd_async asdf plugin add nodejs
@@ -10,14 +12,11 @@ if [ -n "$ASDF_DIR" ] && [ -d "$ASDF_DIR" ] && cmd_exists asdf; then
   run_dotfile_cmd_async asdf direnv setup --version latest
 fi
 
-
 if [ "$SHELL_NAME" = "zsh" ]; then
-  old_IFS="$IFS"
-  while IFS= read -r -d '' file; do
+  for file in "$DOTFILES_BUILD_DIR"/plugins/*.{zsh,sh,zsh-theme}; do
     run_dotfile_cmd_async zcompile "$file"
-  done < <(find "$DOTFILES_BUILD_DIR/plugins" \( -name "*.zsh" -or  '*.zsh-theme' -or -name '*.sh' \) -print0)
+  done
+SHELDON_PROFILE="wezterm" sheldon source 1>/dev/null
 
-  IFS="$old_IFS"
-  unset old_IFS
   unset file
 fi
