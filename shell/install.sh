@@ -38,9 +38,6 @@ run_dotfile_cmd_async() {
   disown
 }
 
-safe_source "$DOTFILES_DIR/shell/$OS_NAME/install.sh"
-safe_source "$DOTFILES_DIR/shell/std/install.sh"
-
 unset file
 unset -f keys_for_array
 unset DOTFILES_LOG

@@ -22,8 +22,8 @@ safe_source() {
 
 safe_source "$DOTFILES_DIR/shell/shared.sh"
 # TODO only do if the install directory is missing
-safe_source "$DOTFILES_DIR/shell/install.sh"
-safe_source "$DOTFILES_DIR/shell/env.sh"
+#safe_source "$DOTFILES_DIR/shell/install.sh"
+#safe_source "$DOTFILES_DIR/shell/env.sh"
 
 unset DOTFILES_PLUGINS
 #zprof
